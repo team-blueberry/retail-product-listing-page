@@ -1,5 +1,5 @@
 {
-  "name": "proxy",
+  "name": "retail-product-listing-page",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,9 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "express": "^4.16.4",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }
