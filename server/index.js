@@ -5,19 +5,29 @@ const morgan = require('morgan');
 const axios = require('axios');
 
 //  Configuration
-const REVIEW_API_ENDPOINT =
+const CHECKOUT_API_ENDPOINT = process.env.CHECKOUT_API_ENDPOINT ||
+'http://ec2-18-223-214-235.us-east-2.compute.amazonaws.com/api/checkout/';
+
+const CAROUSEL_API_ENDPOINT = process.env.CAROUSEL_API_ENDPOINT ||
+'http://34.233.106.94/api/images/';
+
+const REVIEW_API_ENDPOINT = process.env.REVIEW_API_ENDPOINT ||
   'http://ec2-18-223-135-118.us-east-2.compute.amazonaws.com/api/reviews/';
-const CHECKOUT_API_ENDPOINT =
-  'http://ec2-18-223-214-235.us-east-2.compute.amazonaws.com/api/checkout/';
-const CAROUSEL_API_ENDPOINT = 'http://34.233.106.94/api/images/';
+
 const port = process.env.PORT || 3000;
+
+console.log('API Endpoints:');
+console.log(' - REVIEW_API_ENDPOINT:',REVIEW_API_ENDPOINT);
+console.log(' - CHECKOUT_API_ENDPOINT:',CHECKOUT_API_ENDPOINT);
+console.log(' - CAROUSEL_API_ENDPOINT:',CAROUSEL_API_ENDPOINT);
 
 const app = express();
 
 // Middleware
 app.use(compression());
 app.use(morgan('dev'));
-app.use('/:id/', express.static(__dirname + '/../public/'));
+app.use('/:id(\\d+)/', express.static(__dirname + '/../public/'));
+app.use('/', express.static(__dirname + '/../public/'));
 
 // Carousel API
 app.get('/api/images/:id', (req, res) => {
