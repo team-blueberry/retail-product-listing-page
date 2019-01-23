@@ -3,3 +3,10 @@ node_modules/
 
 # Environment Variables
 .env*
+
+# Test Results
+/test/load-testing/static-endpoint/results
+/test/load-testing/api-endpoint/results
+
+# Misc
+.DS_Store
